@@ -14,6 +14,11 @@
 		E8B5DAA71E2CCED300AEFF66 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E8B5DAA61E2CCED300AEFF66 /* Assets.xcassets */; };
 		E8B5DAAA1E2CCED300AEFF66 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8B5DAA81E2CCED300AEFF66 /* LaunchScreen.storyboard */; };
 		E8B5DAB41E2CCF6600AEFF66 /* NSObject+SIModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E8B5DAB31E2CCF6600AEFF66 /* NSObject+SIModel.m */; };
+		E8B5DABA1E2DB3AF00AEFF66 /* DictionaryToModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E8B5DAB91E2DB3AF00AEFF66 /* DictionaryToModel.m */; };
+		E8B5DABD1E2DB3C800AEFF66 /* ArrayToModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E8B5DABC1E2DB3C800AEFF66 /* ArrayToModel.m */; };
+		E8B5DAC01E2DB3E300AEFF66 /* ModelToDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = E8B5DABF1E2DB3E300AEFF66 /* ModelToDictionary.m */; };
+		E8B5DAC31E2DB80E00AEFF66 /* Members.m in Sources */ = {isa = PBXBuildFile; fileRef = E8B5DAC21E2DB80E00AEFF66 /* Members.m */; };
+		E8B5DAC61E2DB81800AEFF66 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = E8B5DAC51E2DB81800AEFF66 /* User.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +34,16 @@
 		E8B5DAAB1E2CCED300AEFF66 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E8B5DAB21E2CCF6600AEFF66 /* NSObject+SIModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SIModel.h"; sourceTree = "<group>"; };
 		E8B5DAB31E2CCF6600AEFF66 /* NSObject+SIModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SIModel.m"; sourceTree = "<group>"; };
+		E8B5DAB81E2DB3AF00AEFF66 /* DictionaryToModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DictionaryToModel.h; sourceTree = "<group>"; };
+		E8B5DAB91E2DB3AF00AEFF66 /* DictionaryToModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DictionaryToModel.m; sourceTree = "<group>"; };
+		E8B5DABB1E2DB3C800AEFF66 /* ArrayToModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArrayToModel.h; sourceTree = "<group>"; };
+		E8B5DABC1E2DB3C800AEFF66 /* ArrayToModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArrayToModel.m; sourceTree = "<group>"; };
+		E8B5DABE1E2DB3E300AEFF66 /* ModelToDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelToDictionary.h; sourceTree = "<group>"; };
+		E8B5DABF1E2DB3E300AEFF66 /* ModelToDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelToDictionary.m; sourceTree = "<group>"; };
+		E8B5DAC11E2DB80E00AEFF66 /* Members.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Members.h; sourceTree = "<group>"; };
+		E8B5DAC21E2DB80E00AEFF66 /* Members.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Members.m; sourceTree = "<group>"; };
+		E8B5DAC41E2DB81800AEFF66 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		E8B5DAC51E2DB81800AEFF66 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,15 +77,9 @@
 			isa = PBXGroup;
 			children = (
 				E8B5DAB11E2CCEF000AEFF66 /* SIModel */,
-				E8B5DA9D1E2CCED300AEFF66 /* AppDelegate.h */,
-				E8B5DA9E1E2CCED300AEFF66 /* AppDelegate.m */,
-				E8B5DAA01E2CCED300AEFF66 /* ViewController.h */,
-				E8B5DAA11E2CCED300AEFF66 /* ViewController.m */,
-				E8B5DAA31E2CCED300AEFF66 /* Main.storyboard */,
-				E8B5DAA61E2CCED300AEFF66 /* Assets.xcassets */,
-				E8B5DAA81E2CCED300AEFF66 /* LaunchScreen.storyboard */,
-				E8B5DAAB1E2CCED300AEFF66 /* Info.plist */,
-				E8B5DA9A1E2CCED300AEFF66 /* Supporting Files */,
+				E8B5DAB61E2DACCF00AEFF66 /* ViewController */,
+				E8B5DAB51E2DACC000AEFF66 /* Model */,
+				E8B5DAB71E2DACE300AEFF66 /* Others */,
 			);
 			path = SIModelDemo;
 			sourceTree = "<group>";
@@ -91,6 +100,46 @@
 			);
 			path = SIModel;
 			sourceTree = SOURCE_ROOT;
+		};
+		E8B5DAB51E2DACC000AEFF66 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E8B5DAC11E2DB80E00AEFF66 /* Members.h */,
+				E8B5DAC21E2DB80E00AEFF66 /* Members.m */,
+				E8B5DAC41E2DB81800AEFF66 /* User.h */,
+				E8B5DAC51E2DB81800AEFF66 /* User.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		E8B5DAB61E2DACCF00AEFF66 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				E8B5DAB81E2DB3AF00AEFF66 /* DictionaryToModel.h */,
+				E8B5DAB91E2DB3AF00AEFF66 /* DictionaryToModel.m */,
+				E8B5DABB1E2DB3C800AEFF66 /* ArrayToModel.h */,
+				E8B5DABC1E2DB3C800AEFF66 /* ArrayToModel.m */,
+				E8B5DABE1E2DB3E300AEFF66 /* ModelToDictionary.h */,
+				E8B5DABF1E2DB3E300AEFF66 /* ModelToDictionary.m */,
+			);
+			name = ViewController;
+			sourceTree = "<group>";
+		};
+		E8B5DAB71E2DACE300AEFF66 /* Others */ = {
+			isa = PBXGroup;
+			children = (
+				E8B5DA9D1E2CCED300AEFF66 /* AppDelegate.h */,
+				E8B5DA9E1E2CCED300AEFF66 /* AppDelegate.m */,
+				E8B5DAA01E2CCED300AEFF66 /* ViewController.h */,
+				E8B5DAA11E2CCED300AEFF66 /* ViewController.m */,
+				E8B5DAA31E2CCED300AEFF66 /* Main.storyboard */,
+				E8B5DAA61E2CCED300AEFF66 /* Assets.xcassets */,
+				E8B5DAA81E2CCED300AEFF66 /* LaunchScreen.storyboard */,
+				E8B5DAAB1E2CCED300AEFF66 /* Info.plist */,
+				E8B5DA9A1E2CCED300AEFF66 /* Supporting Files */,
+			);
+			name = Others;
+			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
@@ -164,10 +213,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8B5DAC01E2DB3E300AEFF66 /* ModelToDictionary.m in Sources */,
+				E8B5DABD1E2DB3C800AEFF66 /* ArrayToModel.m in Sources */,
+				E8B5DAC61E2DB81800AEFF66 /* User.m in Sources */,
 				E8B5DAA21E2CCED300AEFF66 /* ViewController.m in Sources */,
 				E8B5DAB41E2CCF6600AEFF66 /* NSObject+SIModel.m in Sources */,
 				E8B5DA9F1E2CCED300AEFF66 /* AppDelegate.m in Sources */,
+				E8B5DABA1E2DB3AF00AEFF66 /* DictionaryToModel.m in Sources */,
 				E8B5DA9C1E2CCED300AEFF66 /* main.m in Sources */,
+				E8B5DAC31E2DB80E00AEFF66 /* Members.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -88,6 +88,7 @@ typedef NS_ENUM(NSUInteger,SIDataType){
         if ([_propertyClazz isSubclassOfClass:[NSArray class]])            return SIDataTypeNSArray            ;
         if ([_propertyClazz isSubclassOfClass:[NSMutableDictionary class]])return SIDataTypeNSMutableDictionary;
         if ([_propertyClazz isSubclassOfClass:[NSDictionary class]])       return SIDataTypeNSDictionary       ;
+        return SIDataTypeCustomObject ;
     }
         
     return SIDataTypeUnknow ;
@@ -112,7 +113,7 @@ typedef NS_ENUM(NSUInteger,SIDataType){
 
 @property (nonatomic,assign,readonly) Class clazz ;
 @property (nonatomic,strong,readonly) NSArray<SIProperty *> *properties ;
-@property (nonatomic,strong,readonly) NSDictionary <NSString *,NSString *> *clazzInArray ;
+@property (nonatomic,strong,readonly) NSDictionary <NSString *,Class> *clazzInArray ;
 @property (nonatomic,strong,readonly) NSDictionary <NSString *,NSString *> *replaceKeyFromPropertyName ;
 
 - (instancetype)initWithClass:(Class)clazz ;
@@ -134,6 +135,7 @@ typedef NS_ENUM(NSUInteger,SIDataType){
         NSMutableArray *properties = [NSMutableArray array] ;
         while (clazz != [NSObject class]) {
             [properties addObjectsFromArray:[SIProperty propertiesForClass:clazz]] ;
+            clazz = class_getSuperclass(clazz) ;
         }
         _properties = [properties copy] ;
     }
@@ -272,10 +274,10 @@ typedef NS_ENUM(NSUInteger,SIDataType){
             case SIDataTypeNSMutableArray:
                 if([value isKindOfClass:[NSArray class]]){
                     if([modelClass.clazzInArray.allKeys containsObject:p.propertyName] && modelClass.clazzInArray[p.propertyName]){
-                        NSString  *clsName = modelClass.clazzInArray[p.propertyName];
+                        Class  cls = modelClass.clazzInArray[p.propertyName];
                         NSMutableArray *models = [NSMutableArray array];
                         for(id obj in (NSArray *)value){
-                            NSObject *model = [NSClassFromString(clsName) si_modelWithObj:obj];
+                            NSObject *model = [cls si_modelWithObj:obj];
                             if(model) [models addObject:model];
                         }
                         ((void (*)(id, SEL, id))(void *) objc_msgSend)((id)obj, p.setter, p.dataType == SIDataTypeNSMutableArray ? models : models.copy);
@@ -298,13 +300,13 @@ typedef NS_ENUM(NSUInteger,SIDataType){
 }
 
 
-+ (instancetype)si_modelArrayWithObj:(id)obj{
++ (NSArray *)si_modelArrayWithObj:(id)obj{
     NSArray *array = [self arrayWithObj:obj] ;
     if(!array) return nil ;
     NSMutableArray *models = [NSMutableArray array] ;
     for (NSDictionary *dictionary in array) {
         if(![dictionary isKindOfClass:[NSNull class]] && dictionary){
-            NSObject *model = [self si_modelArrayWithObj:dictionary];
+            NSObject *model = [self si_modelWithObj:dictionary];
             if(model) [models addObject:model];
         }
     }

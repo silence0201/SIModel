@@ -10,7 +10,7 @@
 
 @protocol SIModel <NSObject>
 
-+ (NSDictionary <NSString *,NSString *> *)si_clazzInArray ;
++ (NSDictionary <NSString *,Class> *)si_clazzInArray ;
 + (NSDictionary <NSString *,NSString *> *)si_replaceKeyFromPropertyName ;
 
 + (void)si_beginObjectToModel:(id)obj ;
@@ -22,7 +22,7 @@
 @interface NSObject (SIModel)
 
 + (instancetype)si_modelWithObj:(id)obj ;
-+ (instancetype)si_modelArrayWithObj:(id)obj ;
++ (NSArray *)si_modelArrayWithObj:(id)obj ;
 
 - (NSMutableDictionary *)si_modelToDictionary ;
 
