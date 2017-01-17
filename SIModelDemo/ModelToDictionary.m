@@ -29,7 +29,12 @@
                                            @"name" : @"Silence",
                                            @"age" : @"17",
                                            @"sex" : @"男"
-                                           }]
+                                           }],
+                           @"leader":@{
+                                   @"name" : @"Silence",
+                                   @"age" : @"17",
+                                   @"sex" : @"男"
+                                   }
                            } ;
     Members *members = [Members si_modelWithObj:json] ;
     

@@ -9,6 +9,7 @@
 #import "NSObject+SIModel.h"
 #import <objc/objc-class.h>
 
+#pragma mark ------------ SIDataType ---------------
 typedef NS_ENUM(NSUInteger,SIDataType){
     SIDataTypeUnknow = 0,
     SIDataTypeBool,
@@ -32,6 +33,7 @@ typedef NS_ENUM(NSUInteger,SIDataType){
     SIDataTypeCustomObject,
 };
 
+#pragma mark ----------------- SIProperty --------------
 @interface SIProperty : NSObject
 
 @property (nonatomic,assign,readonly) objc_property_t property ;
@@ -41,7 +43,8 @@ typedef NS_ENUM(NSUInteger,SIDataType){
 @property (nonatomic,assign,readonly) SEL getter ;
 @property (nonatomic,assign,readonly) SEL setter ;
 
-+ (NSArray *)propertiesForClass:(Class)cls ;
+// 获取指定类的所有属性
++ (NSArray <SIProperty *>*)propertiesForClass:(Class)cls ;
 
 - (instancetype)initWithProperty:(objc_property_t)property ;
 + (instancetype)sipropertyWithProperty:(objc_property_t)property ;
@@ -109,6 +112,7 @@ typedef NS_ENUM(NSUInteger,SIDataType){
 
 @end
 
+#pragma mark --------------------- SIClass ----------------
 @interface SIClass : NSObject
 
 @property (nonatomic,assign,readonly) Class clazz ;
@@ -170,8 +174,10 @@ typedef NS_ENUM(NSUInteger,SIDataType){
 
 @end
 
+#pragma mark --------------- NSObject (SIModel) ---------------------
 @implementation NSObject (SIModel)
 
+#pragma mark --- Public Method
 + (instancetype)si_modelWithObj:(id)obj{
     NSDictionary *dic = [self dictionaryWithObj:obj] ;
     if (!dic) return nil ;
@@ -179,7 +185,26 @@ typedef NS_ENUM(NSUInteger,SIDataType){
     return [self setModelClass:clazz dictionary:dic] ;
 }
 
++ (NSArray *)si_modelArrayWithObj:(id)obj{
+    NSArray *array = [self arrayWithObj:obj] ;
+    if(!array) return nil ;
+    NSMutableArray *models = [NSMutableArray array] ;
+    for (NSDictionary *dictionary in array) {
+        if(![dictionary isKindOfClass:[NSNull class]] && dictionary){
+            NSObject *model = [self si_modelWithObj:dictionary];
+            if(model) [models addObject:model];
+        }
+    }
+    return models ;
+}
 
+- (NSMutableDictionary *)si_modelToDictionary{
+    SIClass *clazz = [SIClass siclassWithClazz:self.class] ;
+    return [self dictionaryForModelClass:clazz] ;
+}
+
+#pragma mark --- Private Method
+// 将数据转换为Dic,支持Data,String和Dictionary
 + (NSDictionary *)dictionaryWithObj:(id)obj{
     if(!obj) return nil ;
     NSDictionary *dictonary ;
@@ -202,6 +227,7 @@ typedef NS_ENUM(NSUInteger,SIDataType){
     return dictonary ;
 }
 
+// 根据字典生成对应Model
 + (NSObject *)setModelClass:(SIClass *)modelClass dictionary:(NSDictionary *)dictionary{
     if([modelClass.clazz respondsToSelector:@selector(si_beginObjectToModel:)]){
         [modelClass.clazz si_beginObjectToModel:dictionary] ;
@@ -209,6 +235,7 @@ typedef NS_ENUM(NSUInteger,SIDataType){
     NSObject *obj = [modelClass.clazz new] ;
     for (SIProperty *p in modelClass.properties){
         id value ;
+        // 是否需要值替换
         if ([modelClass.replaceKeyFromPropertyName.allKeys containsObject:p.propertyName]) {
             NSString *key = modelClass.replaceKeyFromPropertyName[p.propertyName] ;
             value = dictionary[key] ;
@@ -216,6 +243,7 @@ typedef NS_ENUM(NSUInteger,SIDataType){
             value = dictionary[p.propertyName] ;
         }
         
+        // 根据类型进行赋值
         switch (p.dataType) {
             case SIDataTypeBool:
                 ((void (*)(id, SEL, bool))(void *) objc_msgSend)((id)obj, p.setter, [value isKindOfClass:[NSNumber class]] ? [value boolValue] : 0);
@@ -273,6 +301,7 @@ typedef NS_ENUM(NSUInteger,SIDataType){
             case SIDataTypeNSArray:
             case SIDataTypeNSMutableArray:
                 if([value isKindOfClass:[NSArray class]]){
+                    // 自定义Array的Class
                     if([modelClass.clazzInArray.allKeys containsObject:p.propertyName] && modelClass.clazzInArray[p.propertyName]){
                         Class  cls = modelClass.clazzInArray[p.propertyName];
                         NSMutableArray *models = [NSMutableArray array];
@@ -300,19 +329,6 @@ typedef NS_ENUM(NSUInteger,SIDataType){
 }
 
 
-+ (NSArray *)si_modelArrayWithObj:(id)obj{
-    NSArray *array = [self arrayWithObj:obj] ;
-    if(!array) return nil ;
-    NSMutableArray *models = [NSMutableArray array] ;
-    for (NSDictionary *dictionary in array) {
-        if(![dictionary isKindOfClass:[NSNull class]] && dictionary){
-            NSObject *model = [self si_modelWithObj:dictionary];
-            if(model) [models addObject:model];
-        }
-    }
-    return models ;
-}
-
 + (NSArray *)arrayWithObj:(id)obj{
     if (!obj) return nil ;
     NSArray *array ;
@@ -334,13 +350,7 @@ typedef NS_ENUM(NSUInteger,SIDataType){
     return array ;
 }
 
-
-
-- (NSMutableDictionary *)si_modelToDictionary{
-    SIClass *clazz = [SIClass siclassWithClazz:self.class] ;
-    return [self dictionaryForModelClass:clazz] ;
-}
-
+// 根据Model获取指定的
 - (NSMutableDictionary *)dictionaryForModelClass:(SIClass *)modelClass{
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionary] ;
     for (SIProperty *p in modelClass.properties){
@@ -442,6 +452,7 @@ typedef NS_ENUM(NSUInteger,SIDataType){
     return dictionary ;
 }
 
+// 将字典进一步装换为字典
 - (NSDictionary *)dictionaryForDictionaryInModels:(NSDictionary *)models{
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionary] ;
     for (id obj in models.allKeys){
@@ -464,6 +475,7 @@ typedef NS_ENUM(NSUInteger,SIDataType){
     return dictionary ;
 }
 
+// 将数组进一步转换为字典
 - (NSArray *)arrayDictionaryForArrayInModels:(NSArray *)models{
     NSMutableArray *array = [NSMutableArray array] ;
     for (id obj in models){

@@ -19,6 +19,7 @@
 		E8B5DAC01E2DB3E300AEFF66 /* ModelToDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = E8B5DABF1E2DB3E300AEFF66 /* ModelToDictionary.m */; };
 		E8B5DAC31E2DB80E00AEFF66 /* Members.m in Sources */ = {isa = PBXBuildFile; fileRef = E8B5DAC21E2DB80E00AEFF66 /* Members.m */; };
 		E8B5DAC61E2DB81800AEFF66 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = E8B5DAC51E2DB81800AEFF66 /* User.m */; };
+		E8B5DACC1E2DCE4700AEFF66 /* LogUnicode.m in Sources */ = {isa = PBXBuildFile; fileRef = E8B5DACB1E2DCE4700AEFF66 /* LogUnicode.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		E8B5DAC21E2DB80E00AEFF66 /* Members.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Members.m; sourceTree = "<group>"; };
 		E8B5DAC41E2DB81800AEFF66 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		E8B5DAC51E2DB81800AEFF66 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		E8B5DACB1E2DCE4700AEFF66 /* LogUnicode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogUnicode.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +130,7 @@
 		E8B5DAB71E2DACE300AEFF66 /* Others */ = {
 			isa = PBXGroup;
 			children = (
+				E8B5DACB1E2DCE4700AEFF66 /* LogUnicode.m */,
 				E8B5DA9D1E2CCED300AEFF66 /* AppDelegate.h */,
 				E8B5DA9E1E2CCED300AEFF66 /* AppDelegate.m */,
 				E8B5DAA01E2CCED300AEFF66 /* ViewController.h */,
@@ -215,6 +218,7 @@
 			files = (
 				E8B5DAC01E2DB3E300AEFF66 /* ModelToDictionary.m in Sources */,
 				E8B5DABD1E2DB3C800AEFF66 /* ArrayToModel.m in Sources */,
+				E8B5DACC1E2DCE4700AEFF66 /* LogUnicode.m in Sources */,
 				E8B5DAC61E2DB81800AEFF66 /* User.m in Sources */,
 				E8B5DAA21E2CCED300AEFF66 /* ViewController.m in Sources */,
 				E8B5DAB41E2CCF6600AEFF66 /* NSObject+SIModel.m in Sources */,
