@@ -25,25 +25,25 @@
 	
 4. 如何属性名和JSON或字典中的key不相同,需要实现:
 
-		```objective-c
-		+ (NSDictionary <NSString *,NSString *> *)si_replaceKeyFromPropertyName{
-    		return @{
-             		@"ID" : @"id" ,
-             		@"desc" : @"desciption"
-             		} ;
-		}
-		```
+	```objective-c
+	+ (NSDictionary <NSString *,NSString *> *)si_replaceKeyFromPropertyName{
+    	return @{
+          	@"ID" : @"id" ,
+             	@"desc" : @"desciption"
+             	} ;
+	}
+	```
 		
 5. 过程处理
 
-		```objective-c
-		+ (void)si_beginObjectToModel:(id)obj{
-    		NSLog(@"开始转换:%@",obj) ;
-		}
-		+ (void)si_endObjectToModel:(id)model{
-   	 		NSLog(@"结束转换:%@",model) ;
-		}
-		```
+	```objective-c
+	+ (void)si_beginObjectToModel:(id)obj{
+    	NSLog(@"开始转换:%@",obj) ;
+	}
+	+ (void)si_endObjectToModel:(id)model{
+   	 	NSLog(@"结束转换:%@",model) ;
+	}
+	```
 		
 6. 更多请查看`NSObject+SIModel.h`说明
 
