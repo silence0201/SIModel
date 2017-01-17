@@ -8,30 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-
-typedef NS_ENUM(NSUInteger,SIDataType){
-    SIDataTypeUnknow = 0,
-    SIDataTypeBool,
-    SIDataTypeFloat,
-    SIDataTypeDouble,
-    SIDataTypeChar,
-    SIDataTypeShort,
-    SIDataTypeInt,
-    SIDataTypeLongLong,
-    SIDataTypeUnsignedInt,
-    SIDataTypeUnsignedShort,
-    SIDataTypeUnsignedChar,
-    SIDataTypeUnsignedLongLong,
-    SIDataTypeNSNumber,
-    SIDataTypeNSString,
-    SIDataTypeNSMutableString,
-    SIDataTypeNSArray,
-    SIDataTypeNSMutableArray,
-    SIDataTypeNSDictionary,
-    SIDataTypeNSMutableDictionary,
-    SIDataTypeCustomObject,
-};
-
 @protocol SIModel <NSObject>
 
 + (NSDictionary <NSString *,NSString *> *)si_clazzInArray ;
