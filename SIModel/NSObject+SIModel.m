@@ -478,7 +478,7 @@ typedef NS_ENUM(NSUInteger,SIDataType){
             if (dic) [array addObject:dic] ;
         }
     }
-    return nil ;
+    return array ;
 }
 
 @end
