@@ -44,8 +44,17 @@
    	 	NSLog(@"结束转换:%@",model) ;
 	}
 	```
+	
+6. 快速归档
+
+	```objective-c
+	@interface Members : NSObject<NSCoding>
+	
+	// 实现中添加
+	SIModelCodingImplementation
+	```
 		
-6. 更多请查看`NSObject+SIModel.h`说明
+7. 更多请查看`NSObject+SIModel.h`说明
 
 ##SIModel
 SIModel is available under the MIT license. See the LICENSE file for more info.
