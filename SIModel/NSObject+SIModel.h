@@ -72,4 +72,40 @@
  */
 - (NSMutableDictionary *)si_modelToDictionary ;
 
+
+/**
+    快速解档
+
+    @param aDecoder aDecoder
+ */
+- (void)si_decode:(NSCoder *)aDecoder ;
+
+
+/**
+    快速归档
+
+    @param aCoder aCoder
+ */
+- (void)si_encode:(NSCoder *)aCoder ;
+
+
+/**
+ 归档的实现
+ */
+#define SICodingImplementation \
+- (id)initWithCoder:(NSCoder *)decoder \
+{ \
+if (self = [super init]) { \
+[self si_decode:decoder]; \
+} \
+return self; \
+} \
+\
+- (void)encodeWithCoder:(NSCoder *)encoder \
+{ \
+[self si_encode:encoder]; \
+}
+
+#define SIModelCodingImplementation SICodingImplementation
+
 @end

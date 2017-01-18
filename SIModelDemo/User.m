@@ -7,7 +7,10 @@
 //
 
 #import "User.h"
+#import "NSObject+SIModel.h"
 
 @implementation User
+
+SIModelCodingImplementation
 
 @end

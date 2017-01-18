@@ -203,6 +203,27 @@ typedef NS_ENUM(NSUInteger,SIDataType){
     return [self dictionaryForModelClass:clazz] ;
 }
 
+// 快速归档
+- (void)si_decode:(NSCoder *)aDecoder {
+    unsigned int outCount;
+    Ivar * ivars = class_copyIvarList([self class], &outCount);
+    for (int i = 0; i < outCount; i ++) {
+        Ivar ivar = ivars[i];
+        NSString * key = [NSString stringWithUTF8String:ivar_getName(ivar)];
+        [self setValue:[aDecoder decodeObjectForKey:key] forKey:key];
+    }
+}
+
+- (void)si_encode:(NSCoder *)aCoder {
+    unsigned int outCount;
+    Ivar * ivars = class_copyIvarList([self class], &outCount);
+    for (int i = 0; i < outCount; i ++) {
+        Ivar ivar = ivars[i];
+        NSString * key = [NSString stringWithUTF8String:ivar_getName(ivar)];
+        [aCoder encodeObject:[self valueForKey:key] forKey:key];
+    }
+}
+
 #pragma mark --- Private Method
 // 将数据转换为Dic,支持Data,String和Dictionary
 + (NSDictionary *)dictionaryWithObj:(id)obj{

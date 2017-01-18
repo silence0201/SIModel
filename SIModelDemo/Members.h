@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @class User ;
-@interface Members : NSObject
+@interface Members : NSObject<NSCoding>
 
 @property (nonatomic) NSString *name;
 @property (nonatomic) NSString *ID;

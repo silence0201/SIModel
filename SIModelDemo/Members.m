@@ -8,6 +8,7 @@
 
 #import "Members.h"
 #import "User.h"
+#import "NSObject+SIModel.h"
 
 @implementation Members
 
@@ -28,4 +29,5 @@
     NSLog(@"结束转换:%@",model) ;
 }
 
+SIModelCodingImplementation
 @end
