@@ -5,11 +5,11 @@
 
 使用说明
 ====
-###安装
-#####手工导入
+### 安装
+##### 手工导入
 将项目目录下的`SIModel`导入项目中
 
-###使用
+### 使用
 1. 导入头文件
 
 	```objective-c
@@ -58,5 +58,5 @@
 		
 7. 更多请查看`NSObject+SIModel.h`说明
 
-##SIModel
+## SIModel
 SIModel is available under the MIT license. See the LICENSE file for more info.
